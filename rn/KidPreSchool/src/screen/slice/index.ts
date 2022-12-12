@@ -1,7 +1,9 @@
+import { createSlice } from '../../utils/@reduxjs/toolkit';
+import { useInjectReducer, useInjectSaga } from '../../utils/redux-injectors';
+
 import { PayloadAction } from '@reduxjs/toolkit';
-import { Repo } from '../../../types/Repo';
-import { createSlice } from '../../../utils/@reduxjs/toolkit';
-import { useInjectReducer, useInjectSaga } from '../../../utils/redux-injectors';
+
+import { Repo } from '../../types/Repo';
 import { githubRepoFormSaga } from './saga';
 import { GithubRepoFormState, RepoErrorType } from './types';
 

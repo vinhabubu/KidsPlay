@@ -1,4 +1,4 @@
-import { Repo } from '../../../types/Repo';
+import { Repo } from '../../types/Repo';
 
 /* --- STATE --- */
 export interface GithubRepoFormState {
