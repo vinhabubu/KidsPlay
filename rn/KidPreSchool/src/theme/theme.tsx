@@ -1,4 +1,5 @@
 import { DefaultTheme as NavigationDefaultTheme } from '@react-navigation/native';
+import { Dimensions } from 'react-native';
 import { DefaultTheme as PaperDefaultTheme } from 'react-native-paper';
 
 /**
@@ -21,5 +22,65 @@ export const defaultTheme = {
     error: '#FF0000',
     default: '#fff176',
     //Define new color
+  },
+  font: {
+    web: {
+      regular: {
+        fontFamily: 'sans-serif',
+        fontWeight: 'normal',
+      },
+      medium: {
+        fontFamily: 'sans-serif-medium',
+        fontWeight: 'normal',
+      },
+      light: {
+        fontFamily: 'sans-serif-light',
+        fontWeight: 'normal',
+      },
+      thin: {
+        fontFamily: 'sans-serif-thin',
+        fontWeight: 'normal',
+      },
+    },
+    ios: {
+      regular: {
+        fontFamily: 'sans-serif',
+        fontWeight: 'normal',
+      },
+      medium: {
+        fontFamily: 'sans-serif-medium',
+        fontWeight: 'normal',
+      },
+      light: {
+        fontFamily: 'sans-serif-light',
+        fontWeight: 'normal',
+      },
+      thin: {
+        fontFamily: 'sans-serif-thin',
+        fontWeight: 'normal',
+      },
+    },
+    android: {
+      regular: {
+        fontFamily: 'sans-serif',
+        fontWeight: 'normal',
+      },
+      medium: {
+        fontFamily: 'sans-serif-medium',
+        fontWeight: 'normal',
+      },
+      light: {
+        fontFamily: 'sans-serif-light',
+        fontWeight: 'normal',
+      },
+      thin: {
+        fontFamily: 'sans-serif-thin',
+        fontWeight: 'normal',
+      },
+      screen: {
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+      },
+    },
   },
 };

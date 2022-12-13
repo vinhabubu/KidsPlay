@@ -6,6 +6,7 @@ import {
 import React, { useEffect } from 'react';
 
 import Home from '~/screen/home/Home';
+import Splash from '~/screen/splash/Splash';
 
 // import TestPage from '~/screens/TestPage';
 
@@ -92,8 +93,9 @@ const RootNavigator = (): JSX.Element => {
   return (
     <StackNavigator.Navigator
       screenOptions={screenOptions}
-      initialRouteName='HomePage'>
+      initialRouteName='SplashPage'>
       <StackNavigator.Screen name='HomePage' component={Home} />
+      <StackNavigator.Screen name='SplashPage' component={Splash} />
     </StackNavigator.Navigator>
   );
 };
