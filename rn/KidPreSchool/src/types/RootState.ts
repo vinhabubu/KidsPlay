@@ -1,4 +1,5 @@
-import { GithubRepoFormState } from '../app/page/slice/types';
+import { GithubRepoFormState } from '../redux/slice/types';
+
 // import { ThemeState } from 'styles/theme/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 

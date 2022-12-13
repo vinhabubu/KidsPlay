@@ -2,45 +2,37 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
+ * Generated with the TypeScript template
+ * https://github.com/react-native-community/react-native-template-typescript
+ *
  * @format
- * @flow strict-local
  */
 import React from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { Provider } from 'react-redux';
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from 'react-native-safe-area-context';
+import { Provider as StoreProvider } from 'react-redux';
 
+import NavigationContainer from '~/navigators/NavigationContainer';
 import RootNavigator from '~/navigators/RootNavigator';
-
-import HomePage from './src/screen/HomePage';
-import { configureAppStore } from './src/store/configureStore';
-
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
+import { configureAppStore } from '~/redux/store/configureStore';
+import { defaultTheme } from '~/theme/theme';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
   const store = configureAppStore();
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <Provider store={store}>
-        <HomePage />
-      </Provider>
-    </SafeAreaView>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <StoreProvider store={store}>
+        <PaperProvider theme={defaultTheme}>
+          <NavigationContainer theme={defaultTheme}>
+            <RootNavigator />
+          </NavigationContainer>
+        </PaperProvider>
+      </StoreProvider>
+    </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
