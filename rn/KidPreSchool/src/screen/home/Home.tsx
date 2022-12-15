@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import {
+  Dimensions,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -11,6 +12,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Header from '~/components/header/Header';
 import { HomeData } from '~/data/HomeData';
 import { HomePageNavProps } from '~/navigators/RootNavigator';
 import { useGithubRepoFormSlice } from '~/redux/slice';
@@ -20,12 +22,14 @@ const Home = () => {
   const navigation = useNavigation<HomePageNavProps>();
 
   // const [id, setId] = useState(0)
-  const handleClick = () => {
-    // console.log(id)
+  const handleClick = (item: HomeInFo) => {
+    if (item.id !== '1') {
+      navigation.navigate('ShareMenuPage');
+    }
   };
-  const renderItem = ({ item }: { item: any }) => {
+  const renderItem = ({ item }: { item: HomeInFo }) => {
     return (
-      <TouchableOpacity onPress={() => handleClick()}>
+      <TouchableOpacity onPress={() => handleClick(item)}>
         <View>
           <FastImage style={styles.image} source={item.image} />
         </View>
@@ -35,12 +39,12 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Headbar /> */}
+      <Header />
       <SafeAreaView style={styles.flatlist}>
         <FlatList
           data={HomeData}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          // keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
     </SafeAreaView>
@@ -57,9 +61,9 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   image: {
-    width: 380,
+    width: Dimensions.get('window').width - 10,
     height: 200,
-    margin: 6,
+    margin: 4,
     borderRadius: 12,
   },
 });

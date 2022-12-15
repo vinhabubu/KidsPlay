@@ -2,7 +2,7 @@ import { Repo } from '../../types/Repo';
 
 /* --- STATE --- */
 export interface GithubRepoFormState {
-  username: string;
+  idHome: string;
   loading: boolean;
   error?: RepoErrorType | null;
   repositories: Repo[];

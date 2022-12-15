@@ -6,6 +6,7 @@ import {
 import React, { useEffect } from 'react';
 
 import Home from '~/screen/home/Home';
+import ShareMenu from '~/screen/share-menu/ShareMenu';
 import Splash from '~/screen/splash/Splash';
 
 // import TestPage from '~/screens/TestPage';
@@ -16,7 +17,7 @@ const screenOptions = { headerShown: false };
 export type RootNavigatorProps = {
   SplashPage: undefined;
   HomePage: undefined;
-  LearningPage: undefined;
+  ShareMenuPage: undefined;
   TestPage: undefined;
   DetailPage: undefined;
   FullScreenPage: undefined;
@@ -38,7 +39,7 @@ export type SplashPageNavProps = StackNavigationProp<
 
 export type LearningPageNavProps = StackNavigationProp<
   RootNavigatorProps,
-  'LearningPage'
+  'ShareMenuPage'
 >;
 
 export type FullScreenPageNavProps = StackNavigationProp<
@@ -62,7 +63,10 @@ export type ListenGuessExamPageProps = StackNavigationProp<
 >;
 
 export type SplashPageRouteProps = RouteProp<RootNavigatorProps, 'SplashPage'>;
-export type LearningRouteProps = RouteProp<RootNavigatorProps, 'LearningPage'>;
+export type ShareMenuRouteProps = RouteProp<
+  RootNavigatorProps,
+  'ShareMenuPage'
+>;
 export type FullScreenRouteProps = RouteProp<
   RootNavigatorProps,
   'FullScreenPage'
@@ -96,6 +100,7 @@ const RootNavigator = (): JSX.Element => {
       initialRouteName='SplashPage'>
       <StackNavigator.Screen name='HomePage' component={Home} />
       <StackNavigator.Screen name='SplashPage' component={Splash} />
+      <StackNavigator.Screen name='ShareMenuPage' component={ShareMenu} />
     </StackNavigator.Navigator>
   );
 };

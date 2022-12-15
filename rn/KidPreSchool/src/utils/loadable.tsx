@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 
 interface Opts {
   fallback: React.ReactNode;
@@ -17,7 +17,7 @@ export const lazyLoad = <
 
   if (selectorFunc) {
     lazyFactory = () =>
-      importFunc().then(module => ({ default: selectorFunc(module) }));
+      importFunc().then((module) => ({ default: selectorFunc(module) }));
   }
 
   const LazyComponent = lazy(lazyFactory);

@@ -1,6 +1,9 @@
 import { DefaultTheme as NavigationDefaultTheme } from '@react-navigation/native';
 import { Dimensions } from 'react-native';
-import { DefaultTheme as PaperDefaultTheme } from 'react-native-paper';
+import {
+  DefaultTheme as PaperDefaultTheme,
+  configureFonts,
+} from 'react-native-paper';
 
 /**
  * https://callstack.github.io/react-native-paper/theming.html
@@ -8,6 +11,7 @@ import { DefaultTheme as PaperDefaultTheme } from 'react-native-paper';
 export const defaultTheme = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
+  fonts: configureFonts({ config: fontConfig, isV3: false }),
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
@@ -23,64 +27,61 @@ export const defaultTheme = {
     default: '#fff176',
     //Define new color
   },
-  font: {
-    web: {
-      regular: {
-        fontFamily: 'sans-serif',
-        fontWeight: 'normal',
-      },
-      medium: {
-        fontFamily: 'sans-serif-medium',
-        fontWeight: 'normal',
-      },
-      light: {
-        fontFamily: 'sans-serif-light',
-        fontWeight: 'normal',
-      },
-      thin: {
-        fontFamily: 'sans-serif-thin',
-        fontWeight: 'normal',
-      },
+};
+
+const fontConfig = {
+  web: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
     },
-    ios: {
-      regular: {
-        fontFamily: 'sans-serif',
-        fontWeight: 'normal',
-      },
-      medium: {
-        fontFamily: 'sans-serif-medium',
-        fontWeight: 'normal',
-      },
-      light: {
-        fontFamily: 'sans-serif-light',
-        fontWeight: 'normal',
-      },
-      thin: {
-        fontFamily: 'sans-serif-thin',
-        fontWeight: 'normal',
-      },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
     },
-    android: {
-      regular: {
-        fontFamily: 'sans-serif',
-        fontWeight: 'normal',
-      },
-      medium: {
-        fontFamily: 'sans-serif-medium',
-        fontWeight: 'normal',
-      },
-      light: {
-        fontFamily: 'sans-serif-light',
-        fontWeight: 'normal',
-      },
-      thin: {
-        fontFamily: 'sans-serif-thin',
-        fontWeight: 'normal',
-      },
-      screen: {
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width,
-      },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+  ios: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+  android: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
     },
   },
 };

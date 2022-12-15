@@ -8,7 +8,7 @@ import { githubRepoFormSaga } from './saga';
 import { GithubRepoFormState, RepoErrorType } from './types';
 
 export const initialState: GithubRepoFormState = {
-  username: 'react-boilerplate',
+  idHome: '',
   repositories: [],
   loading: false,
   error: null,
@@ -19,7 +19,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     changeUsername(state, action: PayloadAction<string>) {
-      state.username = action.payload;
+      state.idHome = action.payload;
     },
     loadRepos(state) {
       state.loading = true;
