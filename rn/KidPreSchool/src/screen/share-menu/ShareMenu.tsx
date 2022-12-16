@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Dimensions,
@@ -16,17 +17,20 @@ import getImage from '~/libs/getImage';
 
 import Header from '~/components/header/Header';
 import { DataMenu } from '~/data/DataMenu';
+import { ShareMenuPageNavProps } from '~/navigators/RootNavigator';
 import { useGithubRepoFormSlice } from '~/redux/slice';
 
 const { height, width } = Dimensions.get('window');
 
 const ShareMenu = () => {
+  const navigation = useNavigation<ShareMenuPageNavProps>();
   const dispatch = useDispatch();
   const { actions } = useGithubRepoFormSlice();
   const renderItem = ({ item }: { item: MenuInFo }) => {
     // console.log(item);
     const handleClick = (item: MenuInFo) => {
       dispatch(actions.changeIdMenu(item.id!));
+      navigation.navigate('StartLearningPage');
     };
     return (
       <TouchableOpacity onPress={() => handleClick(item)}>

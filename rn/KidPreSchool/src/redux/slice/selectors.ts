@@ -12,6 +12,16 @@ export const selectIdHome = createSelector(
   (githubRepoFormState) => githubRepoFormState.idHome,
 );
 
+export const selectIdMenu = createSelector(
+  [selectDomain],
+  (githubRepoFormState) => githubRepoFormState.idMenu,
+);
+
+export const selectImageDetail = createSelector(
+  [selectDomain],
+  (githubRepoFormState) => githubRepoFormState.imageDetail,
+);
+
 export const selectLoading = createSelector(
   [selectDomain],
   (githubRepoFormState) => githubRepoFormState.loading,

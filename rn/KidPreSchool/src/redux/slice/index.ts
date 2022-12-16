@@ -10,6 +10,7 @@ import { GithubRepoFormState, RepoErrorType } from './types';
 export const initialState: GithubRepoFormState = {
   idHome: '',
   idMenu: 0,
+  imageDetail: 0,
   repositories: [],
   loading: false,
   error: null,
@@ -24,6 +25,9 @@ const slice = createSlice({
     },
     changeIdMenu(state, action: PayloadAction<number>) {
       state.idMenu = action.payload;
+    },
+    changeImageDetail(state, action: PayloadAction<number>) {
+      state.imageDetail = action.payload;
     },
     loadRepos(state) {
       state.loading = true;

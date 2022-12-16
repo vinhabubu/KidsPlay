@@ -4,6 +4,7 @@ import { Repo } from '../../types/Repo';
 export interface GithubRepoFormState {
   idHome: string;
   idMenu: number;
+  imageDetail: number;
   loading: boolean;
   error?: RepoErrorType | null;
   repositories: Repo[];

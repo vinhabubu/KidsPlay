@@ -8,6 +8,8 @@ import React, { useEffect } from 'react';
 import Home from '~/screen/home/Home';
 import ShareMenu from '~/screen/share-menu/ShareMenu';
 import Splash from '~/screen/splash/Splash';
+import Detail from '~/screen/start-learning/Detail';
+import StartLearning from '~/screen/start-learning/StartLearning';
 
 // import TestPage from '~/screens/TestPage';
 
@@ -18,9 +20,8 @@ export type RootNavigatorProps = {
   SplashPage: undefined;
   HomePage: undefined;
   ShareMenuPage: undefined;
-  TestPage: undefined;
   DetailPage: undefined;
-  FullScreenPage: undefined;
+  StartLearningPage: undefined;
   LookChoosePage: undefined;
   ListenGuessPage: undefined;
 };
@@ -37,17 +38,17 @@ export type SplashPageNavProps = StackNavigationProp<
   'SplashPage'
 >;
 
-export type LearningPageNavProps = StackNavigationProp<
+export type ShareMenuPageNavProps = StackNavigationProp<
   RootNavigatorProps,
   'ShareMenuPage'
 >;
 
-export type FullScreenPageNavProps = StackNavigationProp<
+export type StartLearningPageNavProps = StackNavigationProp<
   RootNavigatorProps,
-  'FullScreenPage'
+  'StartLearningPage'
 >;
 
-export type DetailPageProps = StackNavigationProp<
+export type DetailPageNavProps = StackNavigationProp<
   RootNavigatorProps,
   'DetailPage'
 >;
@@ -67,9 +68,9 @@ export type ShareMenuRouteProps = RouteProp<
   RootNavigatorProps,
   'ShareMenuPage'
 >;
-export type FullScreenRouteProps = RouteProp<
+export type StartLearningRouteProps = RouteProp<
   RootNavigatorProps,
-  'FullScreenPage'
+  'StartLearningPage'
 >;
 export type DetailRouteProps = RouteProp<RootNavigatorProps, 'DetailPage'>;
 export type LookChooseRouteProps = RouteProp<
@@ -101,6 +102,11 @@ const RootNavigator = (): JSX.Element => {
       <StackNavigator.Screen name='HomePage' component={Home} />
       <StackNavigator.Screen name='SplashPage' component={Splash} />
       <StackNavigator.Screen name='ShareMenuPage' component={ShareMenu} />
+      <StackNavigator.Screen
+        name='StartLearningPage'
+        component={StartLearning}
+      />
+      <StackNavigator.Screen name='DetailPage' component={Detail} />
     </StackNavigator.Navigator>
   );
 };

@@ -1,4 +1,4 @@
-export const dataFull = [
+export const DataFull = [
   [
     {
       sounds: 'A for Apple',

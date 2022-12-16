@@ -7,7 +7,9 @@ import { useSelector } from 'react-redux';
 
 import getImage from '~/libs/getImage';
 
-import { selectIdHome } from '~/redux/slice/selectors';
+import { DataFull } from '~/data/DataFull';
+import { DataMenu } from '~/data/DataMenu';
+import { selectIdHome, selectIdMenu } from '~/redux/slice/selectors';
 import { defaultTheme } from '~/theme/theme';
 
 const Header = () => {
@@ -17,6 +19,10 @@ const Header = () => {
   const [title, setTitle] = useState('');
   const router = useRoute();
   const idHome = useSelector(selectIdHome);
+  const idMenu = useSelector(selectIdMenu);
+  // console.log(idMenu);
+  // const dataHeader = DataMenu.filter((x) => x.id === idMenu);
+  // console.log('1', dataHeader);
   useEffect(() => {
     if (router.name === 'HomePage') {
       setTitle('Kids Play');
@@ -31,6 +37,10 @@ const Header = () => {
       if (idHome === '3') {
         setTitle('Listen and Guess');
       }
+    }
+    if (router.name === 'StartLearningPage') {
+      const dataHeader = DataMenu.filter((x) => x.id === idMenu);
+      setTitle(dataHeader[0]?.name);
     }
   }, [router]);
 
