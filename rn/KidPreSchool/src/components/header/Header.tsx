@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
+import { useSelector } from 'react-redux';
 
 import getImage from '~/libs/getImage';
 
+import { selectIdHome } from '~/redux/slice/selectors';
 import { defaultTheme } from '~/theme/theme';
 
 const Header = () => {
@@ -14,12 +16,21 @@ const Header = () => {
   // console.log(actionButtonState.result?.dataField);
   const [title, setTitle] = useState('');
   const router = useRoute();
+  const idHome = useSelector(selectIdHome);
   useEffect(() => {
     if (router.name === 'HomePage') {
       setTitle('Kids Play');
     }
     if (router.name === 'ShareMenuPage') {
-      setTitle('Preschool Kids Learning');
+      if (idHome === '0') {
+        setTitle('Preschool Kids Learning');
+      }
+      if (idHome === '2') {
+        setTitle('Look and Choose Quiz');
+      }
+      if (idHome === '3') {
+        setTitle('Listen and Guess');
+      }
     }
   }, [router]);
 
@@ -49,7 +60,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     backgroundColor: defaultTheme.colors.default,
     // justifyContent: 'space-around'
-    height: 44,
+    height: 40,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
@@ -57,14 +68,15 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: 'bold',
+    // font: defaultTheme.fonts.regular,
     paddingRight: 24,
-    color: '#006400',
+    color: defaultTheme.colors.headbar,
   },
   textHome: {
     fontSize: 20,
     fontWeight: 'bold',
     paddingLeft: 28,
-    color: '#006400',
+    color: defaultTheme.colors.headbar,
   },
   image: {
     height: 40,

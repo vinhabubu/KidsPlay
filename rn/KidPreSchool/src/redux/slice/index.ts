@@ -18,7 +18,7 @@ const slice = createSlice({
   name: 'githubRepoForm',
   initialState,
   reducers: {
-    changeUsername(state, action: PayloadAction<string>) {
+    changeIdHome(state, action: PayloadAction<string>) {
       state.idHome = action.payload;
     },
     loadRepos(state) {

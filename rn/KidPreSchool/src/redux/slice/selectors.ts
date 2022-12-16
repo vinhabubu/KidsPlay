@@ -7,9 +7,9 @@ import { RootState } from '../../types/RootState';
 const selectDomain = (state: RootState) =>
   state?.githubRepoForm || initialState;
 
-export const selectUsername = createSelector(
+export const selectIdHome = createSelector(
   [selectDomain],
-  (githubRepoFormState) => githubRepoFormState.username,
+  (githubRepoFormState) => githubRepoFormState.idHome,
 );
 
 export const selectLoading = createSelector(

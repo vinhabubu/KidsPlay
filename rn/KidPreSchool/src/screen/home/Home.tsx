@@ -1,36 +1,38 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-  Dimensions,
   FlatList,
   SafeAreaView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Header from '~/components/header/Header';
 import { HomeData } from '~/data/HomeData';
 import { HomePageNavProps } from '~/navigators/RootNavigator';
 import { useGithubRepoFormSlice } from '~/redux/slice';
-import { selectUsername } from '~/redux/slice/selectors';
 
 const Home = () => {
   const navigation = useNavigation<HomePageNavProps>();
+  const dispatch = useDispatch();
+  const { actions } = useGithubRepoFormSlice();
 
   // const [id, setId] = useState(0)
   const handleClick = (item: HomeInFo) => {
-    if (item.id !== '1') {
+    if (item.id === '1') {
+      console.log('video learning');
+    } else {
+      dispatch(actions.changeIdHome(item.id!));
       navigation.navigate('ShareMenuPage');
     }
   };
   const renderItem = ({ item }: { item: HomeInFo }) => {
     return (
       <TouchableOpacity onPress={() => handleClick(item)}>
-        <View>
+        <View style={styles.imageContainer}>
           <FastImage style={styles.image} source={item.image} />
         </View>
       </TouchableOpacity>
@@ -58,13 +60,18 @@ const styles = StyleSheet.create({
   },
   flatlist: {
     flex: 1,
-    marginTop: 8,
+    // marginTop: 6,
+  },
+  imageContainer: {
+    alignItems: 'center',
   },
   image: {
-    width: Dimensions.get('window').width - 10,
-    height: 200,
-    margin: 4,
+    width: '95%',
+    aspectRatio: 10 / 5,
+    // margin: 10,
     borderRadius: 12,
+    marginTop: 16,
+    // paddingTop: -2,
   },
 });
 

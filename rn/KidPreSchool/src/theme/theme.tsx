@@ -11,7 +11,7 @@ import {
 export const defaultTheme = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
-  fonts: configureFonts({ config: fontConfig, isV3: false }),
+  fonts: configureFonts(fontConfig),
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
@@ -25,6 +25,7 @@ export const defaultTheme = {
     text: '#000000',
     error: '#FF0000',
     default: '#fff176',
+    headbar: '#006400',
     //Define new color
   },
 };
