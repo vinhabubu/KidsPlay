@@ -11,7 +11,7 @@ import FastImage from 'react-native-fast-image';
 import { useDispatch } from 'react-redux';
 
 import Header from '~/components/header/Header';
-import { HomeData } from '~/data/HomeData';
+import { DataHome } from '~/data/DataHome';
 import { HomePageNavProps } from '~/navigators/RootNavigator';
 import { useGithubRepoFormSlice } from '~/redux/slice';
 
@@ -44,7 +44,7 @@ const Home = () => {
       <Header />
       <SafeAreaView style={styles.flatlist}>
         <FlatList
-          data={HomeData}
+          data={DataHome}
           renderItem={renderItem}
           // keyExtractor={(item) => item.id}
         />

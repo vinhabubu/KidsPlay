@@ -3,6 +3,7 @@ import { Repo } from '../../types/Repo';
 /* --- STATE --- */
 export interface GithubRepoFormState {
   idHome: string;
+  idMenu: number;
   loading: boolean;
   error?: RepoErrorType | null;
   repositories: Repo[];

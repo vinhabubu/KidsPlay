@@ -9,6 +9,7 @@ import { GithubRepoFormState, RepoErrorType } from './types';
 
 export const initialState: GithubRepoFormState = {
   idHome: '',
+  idMenu: 0,
   repositories: [],
   loading: false,
   error: null,
@@ -20,6 +21,9 @@ const slice = createSlice({
   reducers: {
     changeIdHome(state, action: PayloadAction<string>) {
       state.idHome = action.payload;
+    },
+    changeIdMenu(state, action: PayloadAction<number>) {
+      state.idMenu = action.payload;
     },
     loadRepos(state) {
       state.loading = true;

@@ -1,4 +1,4 @@
-export const HomeData = [
+export const DataHome = [
   {
     id: '0',
     title: "Let's start Learning",
