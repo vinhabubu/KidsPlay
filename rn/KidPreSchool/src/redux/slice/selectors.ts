@@ -21,6 +21,16 @@ export const selectImageDetail = createSelector(
   (KidsPreSchoolState) => KidsPreSchoolState.imageDetail,
 );
 
+export const selectRandomQuestion = createSelector(
+  [selectDomain],
+  (KidsPreSchoolState) => KidsPreSchoolState.itemsQuestion,
+);
+
+export const selectRandomAnswer = createSelector(
+  [selectDomain],
+  (KidsPreSchoolState) => KidsPreSchoolState.imageAnswer,
+);
+
 export const selectLoading = createSelector(
   [selectDomain],
   (KidsPreSchoolState) => KidsPreSchoolState.loading,

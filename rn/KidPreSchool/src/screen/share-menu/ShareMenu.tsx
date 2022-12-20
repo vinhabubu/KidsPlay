@@ -16,6 +16,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import getImage from '~/libs/getImage';
 
 import Header from '~/components/header/Header';
+import useRandomQuestion from '~/components/look-and-choose/RandomQuestion';
+import { DataFull } from '~/data/DataFull';
+// import { RandomQuestion } from '~/components/look-and-choose/RandomQuestion';
 import { DataMenu } from '~/data/DataMenu';
 import { ShareMenuPageNavProps } from '~/navigators/RootNavigator';
 import { useKidsPreSchoolSlice } from '~/redux/slice';
@@ -28,12 +31,26 @@ const ShareMenu = () => {
   const dispatch = useDispatch();
   const { actions } = useKidsPreSchoolSlice();
   const idHome = useSelector(selectIdHome);
+  // const dataQuestion = DataFull[idMenu];
+  // const { randomQuestion, randomAnswer } = useRandomQuestion();
   const renderItem = ({ item }: { item: MenuInFo }) => {
     // console.log(item);
     const handleClick = (item: MenuInFo) => {
+      const dataQuestion = DataFull[item.id!];
+      const itemRandom = [...dataQuestion].sort(() => 0.5 - Math.random());
+      const items = itemRandom.slice(0, 4);
+      // console.log('2', items);
+      const item1 = items[Math.floor(Math.random() * items.length)].image;
+      dispatch(actions.changeIdMenu(item.id!));
       if (idHome === '0') {
-        dispatch(actions.changeIdMenu(item.id!));
         navigation.navigate('StartLearningPage');
+      }
+      if (idHome === '2') {
+        // dispatch(actions.changeIdMenu(item.id!));
+        // RandomQuestion(item.id);
+        dispatch(actions.randomQuestion(items));
+        dispatch(actions.randomAnswer(item1));
+        navigation.navigate('LookAndChoosePage');
       }
     };
     return (

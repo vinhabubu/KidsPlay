@@ -38,7 +38,10 @@ const Header = () => {
         setTitle('Listen and Guess');
       }
     }
-    if (router.name === 'StartLearningPage') {
+    if (
+      router.name === 'StartLearningPage' ||
+      router.name === 'LookAndChoosePage'
+    ) {
       const dataHeader = DataMenu.filter((x) => x.id === idMenu);
       setTitle(dataHeader[0]?.name);
     }

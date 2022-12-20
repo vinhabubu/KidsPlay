@@ -24,8 +24,10 @@ export const defaultTheme = {
     onSurface: '#1C0056',
     text: '#000000',
     error: '#FF0000',
+    correct: '#008000',
     default: '#fff176',
     headbar: '#006400',
+    backgroundAnswer: '#B9D9EB',
     //Define new color
   },
 };

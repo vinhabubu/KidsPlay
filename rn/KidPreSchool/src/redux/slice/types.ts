@@ -5,6 +5,8 @@ export interface KidsPreSchoolState {
   idHome: string;
   idMenu: number;
   imageDetail: number;
+  itemsQuestion: Array<LearningInFo>;
+  imageAnswer: number;
   loading: boolean;
   error?: RepoErrorType | null;
   repositories: Repo[];
