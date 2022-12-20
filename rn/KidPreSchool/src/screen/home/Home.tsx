@@ -13,12 +13,12 @@ import { useDispatch } from 'react-redux';
 import Header from '~/components/header/Header';
 import { DataHome } from '~/data/DataHome';
 import { HomePageNavProps } from '~/navigators/RootNavigator';
-import { useGithubRepoFormSlice } from '~/redux/slice';
+import { useKidsPreSchoolSlice } from '~/redux/slice';
 
 const Home = () => {
   const navigation = useNavigation<HomePageNavProps>();
   const dispatch = useDispatch();
-  const { actions } = useGithubRepoFormSlice();
+  const { actions } = useKidsPreSchoolSlice();
 
   // const [id, setId] = useState(0)
   const handleClick = (item: HomeInFo) => {

@@ -5,9 +5,9 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Repo } from '../../types/Repo';
 import { githubRepoFormSaga } from './saga';
-import { GithubRepoFormState, RepoErrorType } from './types';
+import { KidsPreSchoolState, RepoErrorType } from './types';
 
-export const initialState: GithubRepoFormState = {
+export const initialState: KidsPreSchoolState = {
   idHome: '',
   idMenu: 0,
   imageDetail: 0,
@@ -17,7 +17,7 @@ export const initialState: GithubRepoFormState = {
 };
 
 const slice = createSlice({
-  name: 'githubRepoForm',
+  name: 'KidsPreSchool',
   initialState,
   reducers: {
     changeIdHome(state, action: PayloadAction<string>) {
@@ -48,7 +48,7 @@ const slice = createSlice({
 
 export const { actions: githubRepoFormActions, reducer } = slice;
 
-export const useGithubRepoFormSlice = () => {
+export const useKidsPreSchoolSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
   useInjectSaga({ key: slice.name, saga: githubRepoFormSaga });
   return { actions: slice.actions };

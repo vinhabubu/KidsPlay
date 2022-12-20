@@ -11,26 +11,30 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import getImage from '~/libs/getImage';
 
 import Header from '~/components/header/Header';
 import { DataMenu } from '~/data/DataMenu';
 import { ShareMenuPageNavProps } from '~/navigators/RootNavigator';
-import { useGithubRepoFormSlice } from '~/redux/slice';
+import { useKidsPreSchoolSlice } from '~/redux/slice';
+import { selectIdHome } from '~/redux/slice/selectors';
 
 const { height, width } = Dimensions.get('window');
 
 const ShareMenu = () => {
   const navigation = useNavigation<ShareMenuPageNavProps>();
   const dispatch = useDispatch();
-  const { actions } = useGithubRepoFormSlice();
+  const { actions } = useKidsPreSchoolSlice();
+  const idHome = useSelector(selectIdHome);
   const renderItem = ({ item }: { item: MenuInFo }) => {
     // console.log(item);
     const handleClick = (item: MenuInFo) => {
-      dispatch(actions.changeIdMenu(item.id!));
-      navigation.navigate('StartLearningPage');
+      if (idHome === '0') {
+        dispatch(actions.changeIdMenu(item.id!));
+        navigation.navigate('StartLearningPage');
+      }
     };
     return (
       <TouchableOpacity onPress={() => handleClick(item)}>

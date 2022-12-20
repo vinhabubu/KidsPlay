@@ -1,7 +1,7 @@
 import { Repo } from '../../types/Repo';
 
 /* --- STATE --- */
-export interface GithubRepoFormState {
+export interface KidsPreSchoolState {
   idHome: string;
   idMenu: number;
   imageDetail: number;
@@ -22,4 +22,4 @@ export const enum RepoErrorType {
   If you want to use 'ContainerState' keyword everywhere in your feature folder, 
   instead of the 'HomePageState' keyword.
 */
-export type ContainerState = GithubRepoFormState;
+export type ContainerState = KidsPreSchoolState;

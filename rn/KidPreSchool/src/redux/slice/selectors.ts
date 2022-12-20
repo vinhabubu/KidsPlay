@@ -4,35 +4,34 @@ import { initialState } from '.';
 import { RootState } from '../../types/RootState';
 
 // First select the relevant part from the state
-const selectDomain = (state: RootState) =>
-  state?.githubRepoForm || initialState;
+const selectDomain = (state: RootState) => state?.KidsPreSchool || initialState;
 
 export const selectIdHome = createSelector(
   [selectDomain],
-  (githubRepoFormState) => githubRepoFormState.idHome,
+  (KidsPreSchoolState) => KidsPreSchoolState.idHome,
 );
 
 export const selectIdMenu = createSelector(
   [selectDomain],
-  (githubRepoFormState) => githubRepoFormState.idMenu,
+  (KidsPreSchoolState) => KidsPreSchoolState.idMenu,
 );
 
 export const selectImageDetail = createSelector(
   [selectDomain],
-  (githubRepoFormState) => githubRepoFormState.imageDetail,
+  (KidsPreSchoolState) => KidsPreSchoolState.imageDetail,
 );
 
 export const selectLoading = createSelector(
   [selectDomain],
-  (githubRepoFormState) => githubRepoFormState.loading,
+  (KidsPreSchoolState) => KidsPreSchoolState.loading,
 );
 
 export const selectError = createSelector(
   [selectDomain],
-  (githubRepoFormState) => githubRepoFormState.error,
+  (KidsPreSchoolState) => KidsPreSchoolState.error,
 );
 
 export const selectRepos = createSelector(
   [selectDomain],
-  (githubRepoFormState) => githubRepoFormState.repositories,
+  (KidsPreSchoolState) => KidsPreSchoolState.repositories,
 );

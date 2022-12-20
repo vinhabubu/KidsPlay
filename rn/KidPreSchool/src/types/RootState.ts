@@ -1,4 +1,4 @@
-import { GithubRepoFormState } from '../redux/slice/types';
+import { KidsPreSchoolState } from '../redux/slice/types';
 
 // import { ThemeState } from 'styles/theme/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
@@ -11,6 +11,6 @@ import { GithubRepoFormState } from '../redux/slice/types';
 */
 export interface RootState {
   // theme?: ThemeState;
-  githubRepoForm?: GithubRepoFormState;
+  KidsPreSchool?: KidsPreSchoolState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

@@ -17,7 +17,7 @@ import getImage from '~/libs/getImage';
 import Header from '~/components/header/Header';
 import { DataFull } from '~/data/DataFull';
 import { StartLearningPageNavProps } from '~/navigators/RootNavigator';
-import { useGithubRepoFormSlice } from '~/redux/slice';
+import { useKidsPreSchoolSlice } from '~/redux/slice';
 import { selectIdMenu } from '~/redux/slice/selectors';
 import { defaultTheme } from '~/theme/theme';
 
@@ -29,7 +29,7 @@ const StartLearning = () => {
   const dataLearning = DataFull[idMenu];
   const dispatch = useDispatch();
   const navigation = useNavigation<StartLearningPageNavProps>();
-  const { actions } = useGithubRepoFormSlice();
+  const { actions } = useKidsPreSchoolSlice();
   // console.log(dataLearning);
   const handleClick = (item: LearningInFo) => {
     dispatch(actions.changeImageDetail(item.image!));
