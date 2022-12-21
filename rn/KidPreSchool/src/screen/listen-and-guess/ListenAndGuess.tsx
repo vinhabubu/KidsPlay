@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Dimensions,
   FlatList,
@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
+import Tts from 'react-native-tts';
 import { useSelector } from 'react-redux';
 
 import getImage from '~/libs/getImage';
@@ -33,6 +34,11 @@ const ListenAndGuess = () => {
   const [selectedKey, setSelectedKey] = useState(0);
   const { randomQuestionChoose, randomAnswerChoose } = useRandomQuestion();
   // console.log('answer', randomImageAnswer);
+  Tts.setDefaultRate(0.1);
+  Tts.setDefaultPitch(0.8);
+  useEffect(() => {
+    Tts.speak(randomAnswer?.sounds);
+  }, [randomAnswer]);
 
   const handleClick = (item: LearningInFo) => {
     // console.log(item);
@@ -44,10 +50,12 @@ const ListenAndGuess = () => {
     //         break;
     //     }
     // }
-    if (item.image === randomAnswer.image) {
+    if (item?.image === randomAnswer?.image) {
       setIsTrue(true);
+      Tts.speak('Correct answer');
     } else {
       setIsTrue(false);
+      Tts.speak('Wrong answer');
     }
     // console.log('1', isTrue);
   };
@@ -57,7 +65,7 @@ const ListenAndGuess = () => {
         <View
           style={item.image === selectedKey ? styleBgImage : styles.bgImage}>
           {/* <Text style={styles.text}>{item.tittle}</Text> */}
-          <FastImage style={styles.imageAnswer} source={item.image} />
+          <FastImage style={styles.imageAnswer} source={item?.image} />
         </View>
       </TouchableWithoutFeedback>
     );
@@ -67,6 +75,10 @@ const ListenAndGuess = () => {
     setSelectedKey(0);
     randomAnswerChoose();
     randomQuestionChoose();
+  };
+
+  const handleVoice = () => {
+    Tts.speak(randomAnswer.sounds);
   };
 
   const styleBgImage = useMemo<StyleProp<ViewStyle>>(
@@ -91,12 +103,14 @@ const ListenAndGuess = () => {
       <Header />
       <SafeAreaView style={styles.Examcontainer}>
         <View style={styles.flexImage}>
-          <FastImage
-            style={styles.image}
-            resizeMode='stretch'
-            source={getImage('btnsound')}
-          />
-          <Text style={styles.textTitle}>{randomAnswer.tittle}</Text>
+          <TouchableOpacity onPress={() => handleVoice()}>
+            <FastImage
+              style={styles.image}
+              resizeMode='stretch'
+              source={getImage('btnsound')}
+            />
+          </TouchableOpacity>
+          <Text style={styles.textTitle}>{randomAnswer?.tittle}</Text>
         </View>
         <View style={styles.flatList}>
           <FlatList

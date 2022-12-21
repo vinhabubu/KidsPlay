@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
+import Tts from 'react-native-tts';
 import { useSelector } from 'react-redux';
 
 import getImage from '~/libs/getImage';
@@ -39,7 +40,8 @@ const LookAndChoose = () => {
   const [selectedKey, setSelectedKey] = useState(0);
   const { randomQuestionChoose, randomAnswerChoose } = useRandomQuestion();
   // console.log('answer', randomImageAnswer);
-
+  Tts.setDefaultRate(0.1);
+  Tts.setDefaultPitch(0.8);
   const handleClick = (item: LearningInFo) => {
     // console.log(item);
     setSelectedKey(item.image!);
@@ -50,10 +52,12 @@ const LookAndChoose = () => {
     //         break;
     //     }
     // }
-    if (item.image === randomAnswer.image) {
+    if (item?.image === randomAnswer?.image) {
       setIsTrue(true);
+      Tts.speak('Correct answer');
     } else {
       setIsTrue(false);
+      Tts.speak('Wrong answer');
     }
     // console.log('1', isTrue);
   };
@@ -62,7 +66,7 @@ const LookAndChoose = () => {
       <TouchableWithoutFeedback onPress={() => handleClick(item)}>
         <View
           style={item.image === selectedKey ? styleBgImage : styles.bgImage}>
-          <Text style={styles.text}>{item.tittle}</Text>
+          <Text style={styles.text}>{item?.tittle}</Text>
         </View>
       </TouchableWithoutFeedback>
     );
@@ -96,7 +100,7 @@ const LookAndChoose = () => {
       <Header />
       <SafeAreaView style={styles.Examcontainer}>
         <View style={styles.flexImage}>
-          <FastImage style={styles.image} source={randomAnswer.image} />
+          <FastImage style={styles.image} source={randomAnswer?.image} />
         </View>
         <View style={styles.flatList}>
           <FlatList

@@ -39,11 +39,11 @@ const Header = () => {
       }
     }
     if (
-      router.name === 'StartLearningPage' ||
-      router.name === 'LookAndChoosePage' ||
-      router.name === 'ListenAndGuessPage'
+      router?.name === 'StartLearningPage' ||
+      router?.name === 'LookAndChoosePage' ||
+      router?.name === 'ListenAndGuessPage'
     ) {
-      const dataHeader = DataMenu.filter((x) => x.id === idMenu);
+      const dataHeader = DataMenu.filter((x) => x?.id === idMenu);
       setTitle(dataHeader[0]?.name);
     }
   }, [router]);

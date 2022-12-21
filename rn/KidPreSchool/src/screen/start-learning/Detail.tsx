@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
+import Tts from 'react-native-tts';
 import { useSelector } from 'react-redux';
 
 import getImage from '~/libs/getImage';
@@ -27,14 +28,15 @@ const Detail = () => {
   // const dataDetail = dataLearning.filter((x) => x.image === imageDetail);
   const navigation = useNavigation();
   // console.log(dataLearning);
-  const index = dataLearning.findIndex((x) => x.image === imageDetail);
+  const index = dataLearning.findIndex((x) => x?.image === imageDetail);
   const [display, setDisplay] = useState(index);
   // console.log(index);
   // setDisplay(dataLearning[index]);
-
-  // useEffect(() => {
-  //   setDisplay(index);
-  // }, []);
+  Tts.setDefaultRate(0.02);
+  Tts.setDefaultPitch(0.8);
+  useEffect(() => {
+    Tts.speak(dataLearning[display]?.sounds);
+  }, [dataLearning[display]]);
 
   const handleNext = () => {
     if (display < dataLearning.length - 1) {

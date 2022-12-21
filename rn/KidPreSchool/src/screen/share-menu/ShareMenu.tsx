@@ -60,7 +60,7 @@ const ShareMenu = () => {
     };
     return (
       <TouchableOpacity onPress={() => handleClick(item)}>
-        <FastImage style={styles.image} source={item.image} />
+        <FastImage style={styles.image} source={item?.image} />
       </TouchableOpacity>
     );
   };
