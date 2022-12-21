@@ -6,6 +6,7 @@ import {
 import React, { useEffect } from 'react';
 
 import Home from '~/screen/home/Home';
+import ListenAndGuess from '~/screen/listen-and-guess/ListenAndGuess';
 import LookAndChoose from '~/screen/look-and-choose/LookAndChoose';
 import ShareMenu from '~/screen/share-menu/ShareMenu';
 import Splash from '~/screen/splash/Splash';
@@ -24,7 +25,7 @@ export type RootNavigatorProps = {
   DetailPage: undefined;
   StartLearningPage: undefined;
   LookAndChoosePage: undefined;
-  ListenGuessPage: undefined;
+  ListenAndGuessPage: undefined;
 };
 
 export type HomePageNavProps = StackNavigationProp<
@@ -61,7 +62,7 @@ export type LookChooseExamPageProps = StackNavigationProp<
 
 export type ListenGuessExamPageProps = StackNavigationProp<
   RootNavigatorProps,
-  'ListenGuessPage'
+  'ListenAndGuessPage'
 >;
 
 export type SplashPageRouteProps = RouteProp<RootNavigatorProps, 'SplashPage'>;
@@ -80,7 +81,7 @@ export type LookChooseRouteProps = RouteProp<
 >;
 export type ListenGuessRouteProps = RouteProp<
   RootNavigatorProps,
-  'ListenGuessPage'
+  'ListenAndGuessPage'
 >;
 
 const RootNavigator = (): JSX.Element => {
@@ -111,6 +112,10 @@ const RootNavigator = (): JSX.Element => {
       <StackNavigator.Screen
         name='LookAndChoosePage'
         component={LookAndChoose}
+      />
+      <StackNavigator.Screen
+        name='ListenAndGuessPage'
+        component={ListenAndGuess}
       />
     </StackNavigator.Navigator>
   );

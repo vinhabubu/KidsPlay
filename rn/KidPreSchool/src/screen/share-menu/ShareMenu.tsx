@@ -40,7 +40,7 @@ const ShareMenu = () => {
       const itemRandom = [...dataQuestion].sort(() => 0.5 - Math.random());
       const items = itemRandom.slice(0, 4);
       // console.log('2', items);
-      const item1 = items[Math.floor(Math.random() * items.length)].image;
+      const item1 = items[Math.floor(Math.random() * items.length)];
       dispatch(actions.changeIdMenu(item.id!));
       if (idHome === '0') {
         navigation.navigate('StartLearningPage');
@@ -51,6 +51,11 @@ const ShareMenu = () => {
         dispatch(actions.randomQuestion(items));
         dispatch(actions.randomAnswer(item1));
         navigation.navigate('LookAndChoosePage');
+      }
+      if (idHome === '3') {
+        dispatch(actions.randomQuestion(items));
+        dispatch(actions.randomAnswer(item1));
+        navigation.navigate('ListenAndGuessPage');
       }
     };
     return (

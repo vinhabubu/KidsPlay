@@ -28,7 +28,7 @@ export const selectRandomQuestion = createSelector(
 
 export const selectRandomAnswer = createSelector(
   [selectDomain],
-  (KidsPreSchoolState) => KidsPreSchoolState.imageAnswer,
+  (KidsPreSchoolState) => KidsPreSchoolState.itemAnswer,
 );
 
 export const selectLoading = createSelector(

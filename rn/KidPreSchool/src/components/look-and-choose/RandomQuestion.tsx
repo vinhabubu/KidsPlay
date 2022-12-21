@@ -15,15 +15,15 @@ function useRandomQuestion() {
   const itemRandom = [...dataQuestion].sort(() => 0.5 - Math.random());
   const { actions } = useKidsPreSchoolSlice();
   const items = itemRandom.slice(0, 4);
-  const image = items[Math.floor(Math.random() * items.length)].image;
+  const itemAnswer = items[Math.floor(Math.random() * items.length)];
   // // console.log('2', items);
   const action1 = useMemo(
     () => ({
       randomQuestionChoose() {
         dispatch(actions.randomQuestion(items));
       },
-      randomAnswer() {
-        dispatch(actions.randomAnswer(image));
+      randomAnswerChoose() {
+        dispatch(actions.randomAnswer(itemAnswer));
       },
     }),
     [items],

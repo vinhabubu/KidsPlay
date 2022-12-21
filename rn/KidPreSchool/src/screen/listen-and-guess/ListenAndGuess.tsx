@@ -26,13 +26,7 @@ import { defaultTheme } from '~/theme/theme';
 
 const { height, width } = Dimensions.get('window');
 
-const LookAndChoose = () => {
-  // const idMenu = useSelector(selectIdMenu);
-  // const dataQuestion = DataFull[idMenu];
-  // const itemRandom = [...dataQuestion].sort(() => 0.5 - Math.random());
-  // const items = itemRandom.slice(0, 4);
-  // // console.log('2', items);
-  // const item1 = items[Math.floor(Math.random() * items.length)].image;
+const ListenAndGuess = () => {
   const randomQuestion = useSelector(selectRandomQuestion);
   const randomAnswer = useSelector(selectRandomAnswer);
   const [isTrue, setIsTrue] = useState(false);
@@ -62,7 +56,8 @@ const LookAndChoose = () => {
       <TouchableWithoutFeedback onPress={() => handleClick(item)}>
         <View
           style={item.image === selectedKey ? styleBgImage : styles.bgImage}>
-          <Text style={styles.text}>{item.tittle}</Text>
+          {/* <Text style={styles.text}>{item.tittle}</Text> */}
+          <FastImage style={styles.imageAnswer} source={item.image} />
         </View>
       </TouchableWithoutFeedback>
     );
@@ -82,7 +77,7 @@ const LookAndChoose = () => {
       justifyContent: 'center',
       alignItems: 'center',
       // padding: 20
-      aspectRatio: 3.2 / 2,
+      aspectRatio: 3 / 2,
       width: width / 2.2,
       margin: 6,
       borderRadius: 10,
@@ -96,7 +91,12 @@ const LookAndChoose = () => {
       <Header />
       <SafeAreaView style={styles.Examcontainer}>
         <View style={styles.flexImage}>
-          <FastImage style={styles.image} source={randomAnswer.image} />
+          <FastImage
+            style={styles.image}
+            resizeMode='stretch'
+            source={getImage('btnsound')}
+          />
+          <Text style={styles.textTitle}>{randomAnswer.tittle}</Text>
         </View>
         <View style={styles.flatList}>
           <FlatList
@@ -138,18 +138,22 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   answers: {
-    paddingTop: height / 18,
+    paddingTop: height / 16,
   },
   bgImage: {
     backgroundColor: defaultTheme.colors.backgroundAnswer,
     justifyContent: 'center',
     alignItems: 'center',
     // padding: 20
-    aspectRatio: 3.2 / 2,
+    aspectRatio: 3 / 2,
     width: width / 2.2,
     margin: 6,
     borderRadius: 10,
     // paddingLeft: 20,
+  },
+  imageAnswer: {
+    aspectRatio: 1 / 1,
+    width: width / 3.5,
   },
   Examcontainer: {
     flex: 1,
@@ -158,13 +162,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   flexImage: {
-    paddingTop: height / 4,
+    paddingTop: height / 5,
     flex: 1,
+    // justifyContent: 'center'
+    // backgroundColor: '#000000',
   },
   image: {
     // flex: 1,
     aspectRatio: 1 / 1,
-    width: width / 3,
+    width: width / 4.5,
+  },
+  textTitle: {
+    fontSize: 20,
+    paddingLeft: 8,
   },
   text: {
     fontSize: 24,
@@ -181,4 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LookAndChoose;
+export default ListenAndGuess;

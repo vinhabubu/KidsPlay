@@ -12,7 +12,7 @@ export const initialState: KidsPreSchoolState = {
   idMenu: 0,
   imageDetail: 0,
   itemsQuestion: [],
-  imageAnswer: 0,
+  itemAnswer: {},
   repositories: [],
   loading: false,
   error: null,
@@ -35,8 +35,8 @@ const slice = createSlice({
     randomQuestion(state, action: PayloadAction<Array<LearningInFo>>) {
       state.itemsQuestion = action.payload;
     },
-    randomAnswer(state, action: PayloadAction<number>) {
-      state.imageAnswer = action.payload;
+    randomAnswer(state, action: PayloadAction<LearningInFo>) {
+      state.itemAnswer = action.payload;
     },
 
     loadRepos(state) {
