@@ -23,7 +23,7 @@ const Home = () => {
   // const [id, setId] = useState(0)
   const handleClick = (item: HomeInFo) => {
     if (item.id === '1') {
-      console.log('video learning');
+      navigation.navigate('VideoMenuPage');
     } else {
       dispatch(actions.changeIdHome(item.id!));
       navigation.navigate('ShareMenuPage');

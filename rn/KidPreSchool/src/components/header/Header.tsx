@@ -24,10 +24,10 @@ const Header = () => {
   // const dataHeader = DataMenu.filter((x) => x.id === idMenu);
   // console.log('1', dataHeader);
   useEffect(() => {
-    if (router.name === 'HomePage') {
+    if (router?.name === 'HomePage') {
       setTitle('Kids Play');
     }
-    if (router.name === 'ShareMenuPage') {
+    if (router?.name === 'ShareMenuPage') {
       if (idHome === '0') {
         setTitle('Preschool Kids Learning');
       }
@@ -37,6 +37,9 @@ const Header = () => {
       if (idHome === '3') {
         setTitle('Listen and Guess');
       }
+    }
+    if (router?.name === 'VideoMenuPage') {
+      setTitle('Learning From Video Song');
     }
     if (
       router?.name === 'StartLearningPage' ||

@@ -3,15 +3,18 @@ import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Home from '~/screen/home/Home';
 import ListenAndGuess from '~/screen/listen-and-guess/ListenAndGuess';
 import LookAndChoose from '~/screen/look-and-choose/LookAndChoose';
+import Setting from '~/screen/setting/Setting';
 import ShareMenu from '~/screen/share-menu/ShareMenu';
 import Splash from '~/screen/splash/Splash';
 import Detail from '~/screen/start-learning/Detail';
 import StartLearning from '~/screen/start-learning/StartLearning';
+import VideoLearning from '~/screen/video-learning/VideoLearning';
+import VideoMenu from '~/screen/video-learning/VideoMenu';
 
 // import TestPage from '~/screens/TestPage';
 
@@ -26,6 +29,9 @@ export type RootNavigatorProps = {
   StartLearningPage: undefined;
   LookAndChoosePage: undefined;
   ListenAndGuessPage: undefined;
+  SettingPage: undefined;
+  VideoMenuPage: undefined;
+  VideoLearningPage: undefined;
 };
 
 export type HomePageNavProps = StackNavigationProp<
@@ -33,7 +39,26 @@ export type HomePageNavProps = StackNavigationProp<
   'HomePage'
 >;
 
+export type SettingPageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'SettingPage'
+>;
+
+export type VideoMenuPageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'VideoMenuPage'
+>;
+
+export type VideoLearningPageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'VideoLearningPage'
+>;
+
 export type HomePageRouteProps = RouteProp<RootNavigatorProps, 'HomePage'>;
+export type SettingPageRouteProps = RouteProp<
+  RootNavigatorProps,
+  'SettingPage'
+>;
 
 export type SplashPageNavProps = StackNavigationProp<
   RootNavigatorProps,
@@ -65,6 +90,16 @@ export type ListenGuessExamPageProps = StackNavigationProp<
   'ListenAndGuessPage'
 >;
 
+export type VideoMenuPageProps = StackNavigationProp<
+  RootNavigatorProps,
+  'VideoMenuPage'
+>;
+
+export type VideoLearningPageProps = StackNavigationProp<
+  RootNavigatorProps,
+  'VideoLearningPage'
+>;
+
 export type SplashPageRouteProps = RouteProp<RootNavigatorProps, 'SplashPage'>;
 export type ShareMenuRouteProps = RouteProp<
   RootNavigatorProps,
@@ -85,8 +120,6 @@ export type ListenGuessRouteProps = RouteProp<
 >;
 
 const RootNavigator = (): JSX.Element => {
-  const isRotate = false;
-
   // const renderHomeUI = isPortrait ? HomePage : HomePageLandscape;
   // useEffect(() => {
   //   isRotate = true;
@@ -102,8 +135,13 @@ const RootNavigator = (): JSX.Element => {
       screenOptions={screenOptions}
       initialRouteName='SplashPage'>
       <StackNavigator.Screen name='HomePage' component={Home} />
+      <StackNavigator.Screen name='SettingPage' component={Setting} />
       <StackNavigator.Screen name='SplashPage' component={Splash} />
       <StackNavigator.Screen name='ShareMenuPage' component={ShareMenu} />
+      <StackNavigator.Screen
+        name='VideoLearningPage'
+        component={VideoLearning}
+      />
       <StackNavigator.Screen
         name='StartLearningPage'
         component={StartLearning}
@@ -117,6 +155,7 @@ const RootNavigator = (): JSX.Element => {
         name='ListenAndGuessPage'
         component={ListenAndGuess}
       />
+      <StackNavigator.Screen name='VideoMenuPage' component={VideoMenu} />
     </StackNavigator.Navigator>
   );
 };
