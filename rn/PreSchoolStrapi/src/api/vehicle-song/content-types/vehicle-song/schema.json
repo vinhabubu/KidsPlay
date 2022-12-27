@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vehicle_songs",
+  "info": {
+    "singularName": "vehicle-song",
+    "pluralName": "vehicle-songs",
+    "displayName": "VehicleSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

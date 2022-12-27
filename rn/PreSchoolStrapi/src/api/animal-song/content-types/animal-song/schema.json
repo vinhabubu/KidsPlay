@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animal_songs",
+  "info": {
+    "singularName": "animal-song",
+    "pluralName": "animal-songs",
+    "displayName": "AnimalSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

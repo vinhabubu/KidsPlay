@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "numbers_songs",
+  "info": {
+    "singularName": "numbers-song",
+    "pluralName": "numbers-songs",
+    "displayName": "NumbersSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text"
+    }
+  }
+}

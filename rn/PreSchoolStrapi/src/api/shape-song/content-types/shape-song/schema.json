@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shape_songs",
+  "info": {
+    "singularName": "shape-song",
+    "pluralName": "shape-songs",
+    "displayName": "ShapeSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

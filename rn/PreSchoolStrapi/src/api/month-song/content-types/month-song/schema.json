@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "month_songs",
+  "info": {
+    "singularName": "month-song",
+    "pluralName": "month-songs",
+    "displayName": "MonthSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
