@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "abc_songs",
+  "info": {
+    "singularName": "abc-song",
+    "pluralName": "abc-songs",
+    "displayName": "ABCSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
