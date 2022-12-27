@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vegetable_songs",
+  "info": {
+    "singularName": "vegetable-song",
+    "pluralName": "vegetable-songs",
+    "displayName": "VegetableSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

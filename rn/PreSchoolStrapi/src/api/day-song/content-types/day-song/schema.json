@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "day_songs",
+  "info": {
+    "singularName": "day-song",
+    "pluralName": "day-songs",
+    "displayName": "DaySongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

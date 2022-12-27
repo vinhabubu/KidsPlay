@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clothes_songs",
+  "info": {
+    "singularName": "clothes-song",
+    "pluralName": "clothes-songs",
+    "displayName": "ClothesSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

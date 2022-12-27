@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fruit_songs",
+  "info": {
+    "singularName": "fruit-song",
+    "pluralName": "fruit-songs",
+    "displayName": "FruitSongs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
