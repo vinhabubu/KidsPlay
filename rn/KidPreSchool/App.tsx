@@ -8,6 +8,7 @@
  * @format
  */
 import React from 'react';
+import { LogBox } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import {
   SafeAreaProvider,
@@ -21,6 +22,8 @@ import { configureAppStore } from '~/redux/store/configureStore';
 import { defaultTheme } from '~/theme/theme';
 
 const App = () => {
+  LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
+  LogBox.ignoreAllLogs();
   const store = configureAppStore();
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>

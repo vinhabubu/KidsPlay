@@ -13,6 +13,7 @@ import ShareMenu from '~/screen/share-menu/ShareMenu';
 import Splash from '~/screen/splash/Splash';
 import Detail from '~/screen/start-learning/Detail';
 import StartLearning from '~/screen/start-learning/StartLearning';
+import { Test } from '~/screen/test/test';
 import VideoLearning from '~/screen/video-learning/VideoLearning';
 import VideoMenu from '~/screen/video-learning/VideoMenu';
 
@@ -32,6 +33,7 @@ export type RootNavigatorProps = {
   SettingPage: undefined;
   VideoMenuPage: undefined;
   VideoLearningPage: undefined;
+  TestPage: undefined;
 };
 
 export type HomePageNavProps = StackNavigationProp<
@@ -130,14 +132,49 @@ const RootNavigator = (): JSX.Element => {
   //   actionMethod.setActionRotate?.(isRotate);
   // });
 
+  const leftToRightAnimation = {
+    cardStyleInterpolator: ({
+      current,
+      layouts,
+    }: {
+      current: any;
+      layouts: any;
+    }) => {
+      return {
+        cardStyle: {
+          transform: [
+            {
+              translateY: current.progress.interpolate({
+                inputRange: [0, 1],
+                outputRange: [layouts.screen.height, 0],
+              }),
+            },
+          ],
+        },
+      };
+    },
+  };
+
   return (
     <StackNavigator.Navigator
       screenOptions={screenOptions}
       initialRouteName='SplashPage'>
-      <StackNavigator.Screen name='HomePage' component={Home} />
-      <StackNavigator.Screen name='SettingPage' component={Setting} />
+      <StackNavigator.Screen
+        name='HomePage'
+        component={Home}
+        options={leftToRightAnimation}
+      />
+      <StackNavigator.Screen
+        name='SettingPage'
+        component={Setting}
+        options={leftToRightAnimation}
+      />
       <StackNavigator.Screen name='SplashPage' component={Splash} />
-      <StackNavigator.Screen name='ShareMenuPage' component={ShareMenu} />
+      <StackNavigator.Screen
+        name='ShareMenuPage'
+        component={ShareMenu}
+        options={leftToRightAnimation}
+      />
       <StackNavigator.Screen
         name='VideoLearningPage'
         component={VideoLearning}
@@ -145,17 +182,25 @@ const RootNavigator = (): JSX.Element => {
       <StackNavigator.Screen
         name='StartLearningPage'
         component={StartLearning}
+        options={leftToRightAnimation}
       />
       <StackNavigator.Screen name='DetailPage' component={Detail} />
       <StackNavigator.Screen
         name='LookAndChoosePage'
         component={LookAndChoose}
+        options={leftToRightAnimation}
       />
       <StackNavigator.Screen
         name='ListenAndGuessPage'
         component={ListenAndGuess}
+        options={leftToRightAnimation}
       />
-      <StackNavigator.Screen name='VideoMenuPage' component={VideoMenu} />
+      <StackNavigator.Screen
+        name='VideoMenuPage'
+        component={VideoMenu}
+        options={leftToRightAnimation}
+      />
+      <StackNavigator.Screen name='TestPage' component={Test} />
     </StackNavigator.Navigator>
   );
 };
