@@ -20,7 +20,7 @@ import { VideoLearningPageNavProps } from '~/navigators/RootNavigator';
 
 const { height, width } = Dimensions.get('window');
 const VideoLearning = () => {
-  const dataVideo = DataVideo.filter((x) => x.id === 0);
+  const dataVideo = DataVideo.filter((x) => x.name === 'ABC Songs');
   const navigation = useNavigation<VideoLearningPageNavProps>();
   const renderItem = ({ item }: { item: any }) => {
     // console.log(item?.data);
@@ -29,12 +29,12 @@ const VideoLearning = () => {
     const idYoutube = splitted[0];
     // console.log('1', idYoutube);
     const titleVideo = splitted[1];
-    const handleClick = () => {
-      // console.log(1);
+    const handleClick = (item: any) => {
+      console.log('1', item);
       navigation.navigate('VideoPage');
     };
     return (
-      <TouchableOpacity onPress={() => handleClick()}>
+      <TouchableOpacity onPress={() => handleClick(item)}>
         <SafeAreaView style={styles.borderShadow}>
           <FastImage
             style={styles.image}

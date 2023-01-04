@@ -46,6 +46,8 @@
     "react-native-screens": "^3.18.2",
     "react-native-tts": "^4.1.0",
     "react-native-video": "^6.0.0-alpha.4",
+    "react-native-webview": "^11.26.0",
+    "react-native-youtube-iframe": "^2.2.2",
     "react-redux": "^8.0.5",
     "redux-injectors": "^2.1.0",
     "redux-saga": "^1.2.2"
