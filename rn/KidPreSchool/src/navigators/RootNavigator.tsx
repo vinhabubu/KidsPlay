@@ -14,6 +14,7 @@ import Splash from '~/screen/splash/Splash';
 import Detail from '~/screen/start-learning/Detail';
 import StartLearning from '~/screen/start-learning/StartLearning';
 import { Test } from '~/screen/test/test';
+import Video from '~/screen/video-learning/Video';
 import VideoLearning from '~/screen/video-learning/VideoLearning';
 import VideoMenu from '~/screen/video-learning/VideoMenu';
 
@@ -33,6 +34,7 @@ export type RootNavigatorProps = {
   SettingPage: undefined;
   VideoMenuPage: undefined;
   VideoLearningPage: undefined;
+  VideoPage: undefined;
   TestPage: undefined;
 };
 
@@ -54,6 +56,11 @@ export type VideoMenuPageNavProps = StackNavigationProp<
 export type VideoLearningPageNavProps = StackNavigationProp<
   RootNavigatorProps,
   'VideoLearningPage'
+>;
+
+export type VideoPageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'VideoPage'
 >;
 
 export type HomePageRouteProps = RouteProp<RootNavigatorProps, 'HomePage'>;
@@ -95,6 +102,11 @@ export type ListenGuessExamPageProps = StackNavigationProp<
 export type VideoMenuPageProps = StackNavigationProp<
   RootNavigatorProps,
   'VideoMenuPage'
+>;
+
+export type VideoPageProps = StackNavigationProp<
+  RootNavigatorProps,
+  'VideoPage'
 >;
 
 export type VideoLearningPageProps = StackNavigationProp<
@@ -140,6 +152,7 @@ const RootNavigator = (): JSX.Element => {
       current: any;
       layouts: any;
     }) => {
+      // console.log('2', layouts);
       return {
         cardStyle: {
           transform: [
@@ -178,6 +191,7 @@ const RootNavigator = (): JSX.Element => {
       <StackNavigator.Screen
         name='VideoLearningPage'
         component={VideoLearning}
+        options={leftToRightAnimation}
       />
       <StackNavigator.Screen
         name='StartLearningPage'
@@ -198,6 +212,11 @@ const RootNavigator = (): JSX.Element => {
       <StackNavigator.Screen
         name='VideoMenuPage'
         component={VideoMenu}
+        options={leftToRightAnimation}
+      />
+      <StackNavigator.Screen
+        name='VideoPage'
+        component={Video}
         options={leftToRightAnimation}
       />
       <StackNavigator.Screen name='TestPage' component={Test} />

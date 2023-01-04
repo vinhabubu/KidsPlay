@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
   Button,
@@ -15,30 +16,34 @@ import { Text } from 'react-native-paper';
 
 import Header from '~/components/header/Header';
 import { DataVideo } from '~/data/DataVideo';
+import { VideoLearningPageNavProps } from '~/navigators/RootNavigator';
 
 const { height, width } = Dimensions.get('window');
 const VideoLearning = () => {
   const dataVideo = DataVideo.filter((x) => x.id === 0);
-
+  const navigation = useNavigation<VideoLearningPageNavProps>();
   const renderItem = ({ item }: { item: any }) => {
     // console.log(item?.data);
+
     const splitted = item?.data.split('#');
     const idYoutube = splitted[0];
     // console.log('1', idYoutube);
     const titleVideo = splitted[1];
+    const handleClick = () => {
+      // console.log(1);
+      navigation.navigate('VideoPage');
+    };
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => handleClick()}>
         <SafeAreaView style={styles.borderShadow}>
-          <View style={styles.content}>
-            <FastImage
-              style={styles.image}
-              resizeMode='stretch'
-              source={{
-                uri: `https://i3.ytimg.com/vi/${idYoutube}/maxresdefault.jpg`,
-              }}
-            />
-            <Text style={styles.title}>{titleVideo}</Text>
-          </View>
+          <FastImage
+            style={styles.image}
+            resizeMode='stretch'
+            source={{
+              uri: `https://i3.ytimg.com/vi/${idYoutube}/maxresdefault.jpg`,
+            }}
+          />
+          <Text style={styles.title}>{titleVideo}</Text>
         </SafeAreaView>
       </TouchableOpacity>
     );
@@ -73,34 +78,29 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   borderShadow: {
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-      },
-      android: {
-        elevation: 5,
-      },
-    }),
+    shadowColor: 'rgb(0, 0, 0)',
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 3,
+    backgroundColor: 'white',
+    borderRadius: 4,
+    // padding: 10,
+    // margin: 10,
   },
-  content: {
-    // // width: 200,
-    // // height: 200,
-    // shadowRadius: 2,
-    // // borderWidth: 4,
-    // // borderColor: "white",
-    // overflow: 'hidden',
-    // elevation: 0.8,
-  },
+
   image: {
-    width: width * 0.45,
+    width: width * 0.47,
     aspectRatio: 1 / 0.5,
+    borderRadius: 2,
+    // overflow: 'hidden',
     // margin: height * 0.023,
   },
   title: {
-    width: width * 0.45,
+    width: width * 0.47,
     fontSize: 15,
     padding: 4,
   },

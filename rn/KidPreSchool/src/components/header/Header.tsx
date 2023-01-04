@@ -9,6 +9,7 @@ import getImage from '~/libs/getImage';
 
 import { DataFull } from '~/data/DataFull';
 import { DataMenu } from '~/data/DataMenu';
+import { DataVideoMenu } from '~/data/DataVideoMenu';
 import { selectIdHome, selectIdMenu } from '~/redux/slice/selectors';
 import { defaultTheme } from '~/theme/theme';
 
@@ -47,6 +48,10 @@ const Header = () => {
       router?.name === 'ListenAndGuessPage'
     ) {
       const dataHeader = DataMenu.filter((x) => x?.id === idMenu);
+      setTitle(dataHeader[0]?.name);
+    }
+    if (router?.name === 'VideoLearningPage') {
+      const dataHeader = DataVideoMenu.filter((x) => x?.id === idMenu);
       setTitle(dataHeader[0]?.name);
     }
   }, [router]);

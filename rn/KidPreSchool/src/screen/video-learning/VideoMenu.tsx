@@ -11,30 +11,33 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
+import { useDispatch } from 'react-redux';
 
 import getImage from '~/libs/getImage';
 
 import Header from '~/components/header/Header';
 import { DataVideoMenu } from '~/data/DataVideoMenu';
 import { VideoMenuPageNavProps } from '~/navigators/RootNavigator';
+import { useKidsPreSchoolSlice } from '~/redux/slice';
 
 const { height, width } = Dimensions.get('window');
 
 const VideoMenu = () => {
   const navigation = useNavigation<VideoMenuPageNavProps>();
-  // const dispatch = useDispatch();
-  // const { actions } = useKidsPreSchoolSlice();
+  const dispatch = useDispatch();
+  const { actions } = useKidsPreSchoolSlice();
   // const idHome = useSelector(selectIdHome);
   // const dataQuestion = DataFull[idMenu];
   // const { randomQuestion, randomAnswer } = useRandomQuestion();
 
-  const handleClick = () => {
-    // console.log('click');
+  const handleClick = (item: MenuInFo) => {
+    // console.log(item);
     navigation.navigate('VideoLearningPage');
+    dispatch(actions.changeIdMenu(item.id!));
   };
   const renderItem = ({ item }: { item: MenuInFo }) => {
     return (
-      <TouchableOpacity onPress={() => handleClick()}>
+      <TouchableOpacity onPress={() => handleClick(item)}>
         <FastImage
           style={styles.image}
           resizeMode='stretch'
