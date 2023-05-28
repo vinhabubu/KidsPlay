@@ -7,6 +7,7 @@ const images = {
   btnnext: require('../asset/drawable/btn_next_150.png'),
   bgview: require('../asset/drawable/bg_view.png'),
   btnsound: require('../asset/drawable/btn_sound.png'),
+  logo: require('../asset/drawable/ic_launcher-playstore.png'),
 };
 
 export default (imageName: keyof typeof images) => {

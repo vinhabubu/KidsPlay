@@ -5,6 +5,8 @@ import {
 } from '@react-navigation/stack';
 import React from 'react';
 
+import Login from '~/screen/authenticate/Login';
+import RegisterScreen from '~/screen/authenticate/Register';
 import Home from '~/screen/home/Home';
 import ListenAndGuess from '~/screen/listen-and-guess/ListenAndGuess';
 import LookAndChoose from '~/screen/look-and-choose/LookAndChoose';
@@ -35,12 +37,24 @@ export type RootNavigatorProps = {
   VideoMenuPage: undefined;
   VideoLearningPage: undefined;
   VideoPage: undefined;
+  LoginPage: undefined;
+  RegisterPage: undefined;
   TestPage: undefined;
 };
 
 export type HomePageNavProps = StackNavigationProp<
   RootNavigatorProps,
   'HomePage'
+>;
+
+export type LoginPageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'LoginPage'
+>;
+
+export type RegisterPageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'RegisterPage'
 >;
 
 export type SettingPageNavProps = StackNavigationProp<
@@ -175,6 +189,16 @@ const RootNavigator = (): JSX.Element => {
       <StackNavigator.Screen
         name='HomePage'
         component={Home}
+        options={leftToRightAnimation}
+      />
+      <StackNavigator.Screen
+        name='LoginPage'
+        component={Login}
+        options={leftToRightAnimation}
+      />
+      <StackNavigator.Screen
+        name='RegisterPage'
+        component={RegisterScreen}
         options={leftToRightAnimation}
       />
       <StackNavigator.Screen
