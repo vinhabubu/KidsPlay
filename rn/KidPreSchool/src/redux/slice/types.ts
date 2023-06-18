@@ -3,6 +3,7 @@ import { Repo } from '../../types/Repo';
 /* --- STATE --- */
 export interface KidsPreSchoolState {
   idHome: string;
+  dataUser: any;
   idMenu: number;
   imageDetail: number;
   itemsQuestion: Array<LearningInFo>;

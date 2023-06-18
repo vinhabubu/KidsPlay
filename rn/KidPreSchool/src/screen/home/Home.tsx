@@ -40,7 +40,7 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header />
       <SafeAreaView style={styles.flatlist}>
         <FlatList
@@ -49,7 +49,7 @@ const Home = () => {
           // keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
-    </SafeAreaView>
+    </View>
   );
 };
 

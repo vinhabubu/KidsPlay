@@ -45,3 +45,8 @@ export const selectRepos = createSelector(
   [selectDomain],
   (KidsPreSchoolState) => KidsPreSchoolState.repositories,
 );
+
+export const selectUser = createSelector(
+  [selectDomain],
+  (KidsPreSchoolState) => KidsPreSchoolState.dataUser,
+);

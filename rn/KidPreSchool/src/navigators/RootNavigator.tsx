@@ -20,6 +20,10 @@ import Video from '~/screen/video-learning/Video';
 import VideoLearning from '~/screen/video-learning/VideoLearning';
 import VideoMenu from '~/screen/video-learning/VideoMenu';
 
+import AdminNavigator from './AdminContainer';
+import ManageNavigator from './ManageContainer';
+import SettingNavigator from './SettingContainer';
+
 // import TestPage from '~/screens/TestPage';
 
 const StackNavigator = createStackNavigator<RootNavigatorProps>();
@@ -39,7 +43,9 @@ export type RootNavigatorProps = {
   VideoPage: undefined;
   LoginPage: undefined;
   RegisterPage: undefined;
+  ManagePage: undefined;
   TestPage: undefined;
+  AdminContainerPage: undefined;
 };
 
 export type HomePageNavProps = StackNavigationProp<
@@ -55,6 +61,11 @@ export type LoginPageNavProps = StackNavigationProp<
 export type RegisterPageNavProps = StackNavigationProp<
   RootNavigatorProps,
   'RegisterPage'
+>;
+
+export type ManagePageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'ManagePage'
 >;
 
 export type SettingPageNavProps = StackNavigationProp<
@@ -82,6 +93,8 @@ export type SettingPageRouteProps = RouteProp<
   RootNavigatorProps,
   'SettingPage'
 >;
+
+export type ManagePageRouteProps = RouteProp<RootNavigatorProps, 'ManagePage'>;
 
 export type SplashPageNavProps = StackNavigationProp<
   RootNavigatorProps,
@@ -185,7 +198,7 @@ const RootNavigator = (): JSX.Element => {
   return (
     <StackNavigator.Navigator
       screenOptions={screenOptions}
-      initialRouteName='SplashPage'>
+      initialRouteName='LoginPage'>
       <StackNavigator.Screen
         name='HomePage'
         component={Home}
@@ -202,8 +215,18 @@ const RootNavigator = (): JSX.Element => {
         options={leftToRightAnimation}
       />
       <StackNavigator.Screen
+        name='AdminContainerPage'
+        component={AdminNavigator}
+        options={leftToRightAnimation}
+      />
+      <StackNavigator.Screen
+        name='ManagePage'
+        component={ManageNavigator}
+        options={leftToRightAnimation}
+      />
+      <StackNavigator.Screen
         name='SettingPage'
-        component={Setting}
+        component={SettingNavigator}
         options={leftToRightAnimation}
       />
       <StackNavigator.Screen name='SplashPage' component={Splash} />

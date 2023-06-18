@@ -16,6 +16,7 @@ export const initialState: KidsPreSchoolState = {
   repositories: [],
   loading: false,
   error: null,
+  dataUser: [],
 };
 
 const slice = createSlice({
@@ -37,6 +38,9 @@ const slice = createSlice({
     },
     randomAnswer(state, action: PayloadAction<LearningInFo>) {
       state.itemAnswer = action.payload;
+    },
+    changeDataUser(state, action: PayloadAction<any>) {
+      state.dataUser = action.payload;
     },
 
     loadRepos(state) {

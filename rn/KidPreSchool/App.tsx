@@ -16,6 +16,7 @@ import {
 } from 'react-native-safe-area-context';
 import { Provider as StoreProvider } from 'react-redux';
 
+import ModalContainer from '~/modal/ModalContainer';
 import NavigationContainer from '~/navigators/NavigationContainer';
 import RootNavigator from '~/navigators/RootNavigator';
 import { configureAppStore } from '~/redux/store/configureStore';
@@ -31,6 +32,7 @@ const App = () => {
         <PaperProvider theme={defaultTheme}>
           <NavigationContainer theme={defaultTheme}>
             <RootNavigator />
+            <ModalContainer />
           </NavigationContainer>
         </PaperProvider>
       </StoreProvider>

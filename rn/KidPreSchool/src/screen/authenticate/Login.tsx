@@ -12,11 +12,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import getImage from '~/libs/getImage';
 
+import axios from 'axios';
 import Loader from '~/components/load/Loader';
 import { LoginPageNavProps } from '~/navigators/RootNavigator';
+import { useKidsPreSchoolSlice } from '~/redux/slice';
 import { defaultTheme } from '~/theme/theme';
 
 const Login = () => {
@@ -25,8 +28,9 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
   const navigation = useNavigation<LoginPageNavProps>();
-
+  const { actions } = useKidsPreSchoolSlice();
   const passwordInputRef = createRef();
+  const dispatch = useDispatch();
   const handleSubmitPress = () => {
     setErrortext('');
     if (!userName) {
@@ -49,34 +53,55 @@ const Login = () => {
     // }
     // formBody = formBody.join('&');
 
-    fetch('http://localhost:8800/api/auth/login', {
-      method: 'POST',
-      mode: 'cors',
-      body: data,
-      headers: {
-        //Header Defination
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        //Hide Loader
-        setLoading(false);
-        console.log('data:', responseJson);
-        // If server response message same as Data Matched
-        // if (responseJson.status === 'success') {
-        //   // AsyncStorage.setItem('user_id', responseJson.data.email);
-        //   console.log(responseJson.data.email);
-        //   // navigation.replace('DrawerNavigationRoutes');
-        // } else {
-        //   setErrortext(responseJson.msg);
-        //   console.log('Please check your email id or password');
-        // }
+    // fetch('http://localhost:8800/api/auth/login', {
+    //   method: 'POST',
+    //   mode: 'cors',
+    //   body: data,
+    //   // headers: {
+    //   //   //Header Defination
+    //   //   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    //   // },
+    // })
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+    //     //Hide Loader
+    //     setLoading(false);
+    //     console.log('data:', responseJson);
+    //     // If server response message same as Data Matched
+    //     // if (responseJson.status === 'success') {
+    //     //   // AsyncStorage.setItem('user_id', responseJson.data.email);
+    //     //   console.log(responseJson.data.email);
+    //     //   // navigation.replace('DrawerNavigationRoutes');
+    //     // } else {
+    //     //   setErrortext(responseJson.msg);
+    //     //   console.log('Please check your email id or password');
+    //     // }
+    //   })
+    //   .catch((error) => {
+    //     //Hide Loader
+    //     setLoading(false);
+    //     console.error(error);
+    //   });
+    axios
+      .post('http://localhost:8800/api/auth/login', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch((error) => {
-        //Hide Loader
-        setLoading(false);
-        console.error(error);
+      .then(function (response) {
+        // console.log(response.data.isAdmin);
+        dispatch(actions.changeDataUser(response.data));
+
+        if (response.data.isAdmin) {
+          navigation.navigate('AdminContainerPage');
+        } else if (response.data.isManager) {
+          navigation.navigate('ManagePage');
+        } else {
+          navigation.navigate('HomePage');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
   return (

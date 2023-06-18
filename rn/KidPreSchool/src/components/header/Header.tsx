@@ -1,20 +1,22 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 import getImage from '~/libs/getImage';
 
+import IconProfile from '~/asset/icon/IconProfile';
 import { DataFull } from '~/data/DataFull';
 import { DataMenu } from '~/data/DataMenu';
 import { DataVideoMenu } from '~/data/DataVideoMenu';
+import { HomePageNavProps } from '~/navigators/RootNavigator';
 import { selectIdHome, selectIdMenu } from '~/redux/slice/selectors';
 import { defaultTheme } from '~/theme/theme';
 
 const Header = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<HomePageNavProps>();
 
   // console.log(actionButtonState.result?.dataField);
   const [title, setTitle] = useState('');
@@ -62,7 +64,10 @@ const Header = () => {
         <View style={styles.container}>
           <Text />
           <Text style={styles.textHome}>{title}</Text>
-          <FastImage style={styles.image} source={getImage('setting')} />
+          <TouchableOpacity onPress={() => navigation.navigate('SettingPage')}>
+            <FastImage style={styles.image} source={getImage('setting')} />
+          </TouchableOpacity>
+          {/* <IconProfile /> */}
         </View>
       ) : (
         <View style={styles.container}>
@@ -82,10 +87,11 @@ const styles = StyleSheet.create({
     // flex: 1,
     backgroundColor: defaultTheme.colors.default,
     // justifyContent: 'space-around'
-    height: 40,
+    height: Platform.OS === 'ios' ? 70 : 40,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
+    // paddingTop: Platform.OS === 'ios' ? 16 : 0,
   },
   text: {
     fontSize: 20,

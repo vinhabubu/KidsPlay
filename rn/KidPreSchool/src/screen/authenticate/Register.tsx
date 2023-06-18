@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { createRef, useState } from 'react';
 import {
   Image,
@@ -13,7 +14,9 @@ import {
 
 import getImage from '~/libs/getImage';
 
+import axios from 'axios';
 import Loader from '~/components/load/Loader';
+import { RegisterPageNavProps } from '~/navigators/RootNavigator';
 
 const RegisterScreen = (props: any) => {
   const [userName, setUserName] = useState('');
@@ -29,8 +32,32 @@ const RegisterScreen = (props: any) => {
   const ageInputRef = createRef();
   const addressInputRef = createRef();
   const passwordInputRef = createRef();
+  const navigation = useNavigation<RegisterPageNavProps>();
 
-  const handleSubmitButton = () => {};
+  const handleSubmitButton = () => {
+    setLoading(true);
+    const dataToSend = {
+      username: userName,
+      email: userEmail,
+      password: userPassword,
+    };
+    const data = JSON.stringify(dataToSend);
+    // console.log(data);
+    axios
+      .post('http://localhost:8800/api/auth/register', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(function (response) {
+        // console.log(response.data.isAdmin);
+        // console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    navigation.goBack();
+  };
   if (isRegistraionSuccess) {
     return (
       <View
@@ -77,7 +104,7 @@ const RegisterScreen = (props: any) => {
             }}
           />
         </View> */}
-        <KeyboardAvoidingView enabled>
+        <KeyboardAvoidingView enabled style={styles.keyboard}>
           <View style={styles.SectionStyle}>
             <TextInput
               style={styles.inputStyle}
@@ -200,7 +227,7 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     flex: 1,
-    color: 'white',
+    color: '#8b9cb5',
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
@@ -217,5 +244,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     padding: 30,
+  },
+  keyboard: {
+    marginTop: 24,
   },
 });
