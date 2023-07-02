@@ -17,7 +17,7 @@ async function run() {
     // this option prevents additional documents from being inserted if one fails
     const options = { ordered: true };
     const result = await listhomes.insertMany(docs, options);
-    console.log(`${result.insertedCount} documents were inserted`);
+    // console.log(`${result.insertedCount} documents were inserted`);
   } finally {
     await client.close();
   }
