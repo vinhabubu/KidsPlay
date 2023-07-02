@@ -2,7 +2,7 @@ import { useModalManager } from '@vlzh/react-modal-manager';
 import { ModalParams } from '@vlzh/react-modal-manager/dist/interfaces';
 import { useCallback } from 'react';
 
-type SupportedModals = 'ExampleModal';
+type SupportedModals = 'ExampleModal' | 'InfoUserModal';
 
 type ModalManagerProps = {
   openModal: (

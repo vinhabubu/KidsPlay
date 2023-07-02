@@ -2,6 +2,7 @@ import { Repo } from '../../types/Repo';
 
 /* --- STATE --- */
 export interface KidsPreSchoolState {
+  isUser: boolean;
   idHome: string;
   dataUser: any;
   idMenu: number;

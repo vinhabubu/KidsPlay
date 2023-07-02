@@ -23,6 +23,8 @@ import { ManagePageNavProps } from '~/navigators/RootNavigator';
 import { useKidsPreSchoolSlice } from '~/redux/slice';
 import { defaultTheme } from '~/theme/theme';
 
+import HeaderManager from '../components/HeaderManager';
+
 const { width } = Dimensions.get('window');
 
 const Content = () => {
@@ -84,8 +86,8 @@ const Content = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
+    <View style={styles.container}>
+      <HeaderManager />
       <SafeAreaView style={styles.container}>
         <ImageBackground resizeMode='cover' source={getImage('bgmain')}>
           <FlatList
@@ -100,7 +102,7 @@ const Content = () => {
         </ImageBackground>
         {/* <FastImage style={styles.image} source={getImage('alphabet')} /> */}
       </SafeAreaView>
-    </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create({

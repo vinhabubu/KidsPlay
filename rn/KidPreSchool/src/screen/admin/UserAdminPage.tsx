@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import getImage from '~/libs/getImage';
 
 import axios from 'axios';
+import IconInfo from '~/asset/icon/IconInfo';
 import Header from '~/components/header/Header';
 import { DataMenu } from '~/data/DataMenu';
 import useModalManager from '~/hook/useModalManager';
@@ -24,6 +25,10 @@ import { ManagePageNavProps } from '~/navigators/RootNavigator';
 import { useKidsPreSchoolSlice } from '~/redux/slice';
 import { selectUser } from '~/redux/slice/selectors';
 import { defaultTheme } from '~/theme/theme';
+
+import AdminInfo from './components/AdminInfo';
+import HeaderAdmin from './components/HeaderAdmin';
+import ManagerInfo from './components/ManagerInfo';
 
 const { width } = Dimensions.get('window');
 
@@ -35,6 +40,9 @@ const UserAdminPage = () => {
   const { openModal } = useModalManager();
   const dataUser = useSelector(selectUser);
   const [dataAllUser, setDataAllUser] = useState([]);
+  const [dataUserAdmin, setDataUserAdmin] = useState({});
+  const [dataUserManager, setDataUserManager] = useState([]);
+
   // console.log(typeof dataUser.accessToken);
 
   const config = {
@@ -44,13 +52,32 @@ const UserAdminPage = () => {
     },
   };
 
+  const openModalInfo = (item: any) => {
+    // console.log(item?._id);
+    // console.log(item);
+    openModal('InfoUserModal', true, {
+      user: item,
+    });
+  };
+
   useEffect(() => {
     axios
       .get('http://localhost:8800/api/users', config)
       .then(function (response) {
         // console.log(response.data);
-        // console.log(response);
-        setDataAllUser(response.data);
+        const dataAdmin = response.data.filter(
+          (item: any) => item?.isAdmin === true,
+        );
+        const dataManager = response.data.filter(
+          (item: any) => item?.isManager === true,
+        );
+        const dataUser = response.data.filter(
+          (item: any) => item?.isManager === false && item?.isAdmin === false,
+        );
+        // console.log(dataManager);
+        setDataAllUser(dataUser);
+        setDataUserAdmin(dataAdmin[0]);
+        setDataUserManager(dataManager);
       })
       .catch(console.log);
   }, []);
@@ -63,10 +90,13 @@ const UserAdminPage = () => {
     arrCopy.splice(objWithIdIndex, 1);
     return arrCopy;
   }
-  const openModalBlock = () => {
+  const openModalBlock = (item: any) => {
     // console.log(item);
+    // console.log(item?._id);
     // console.log(newArr);
-    openModal('ExampleModal');
+    openModal('ExampleModal', true, {
+      user: item,
+    });
   };
 
   const renderItem = ({ item }: { item: LearningInFo }) => {
@@ -87,14 +117,21 @@ const UserAdminPage = () => {
             {item?.isActive ? (
               <TouchableOpacity
                 style={styles.edit}
-                onPress={() => openModalBlock()}>
+                onPress={() => openModalBlock(item)}>
                 <Text style={styles.textEdit}>Active</Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity style={styles.delete}>
+              <TouchableOpacity
+                style={styles.delete}
+                onPress={() => openModalBlock(item)}>
                 <Text style={styles.textEdit}>Block</Text>
               </TouchableOpacity>
             )}
+            <TouchableOpacity
+              style={{ marginRight: 12 }}
+              onPress={() => openModalInfo(item)}>
+              <IconInfo width={24} height={24} />
+            </TouchableOpacity>
           </View>
         </View>
         {/* <Text style={styles.text}>{item.tittle}</Text> */}
@@ -102,10 +139,22 @@ const UserAdminPage = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
+    <View style={styles.container}>
+      <HeaderAdmin />
+
       <SafeAreaView style={styles.container}>
         <ImageBackground resizeMode='cover' source={getImage('bgmain')}>
+          <View style={{ backgroundColor: 'transparent' }}>
+            <Text style={styles.textName}>Admin</Text>
+            <AdminInfo item={dataUserAdmin} />
+          </View>
+          <View style={{ backgroundColor: 'transparent' }}>
+            <Text style={styles.textName}>Manager</Text>
+            {dataUserManager.map((item: any) => {
+              return <ManagerInfo item={item} />;
+            })}
+          </View>
+          <Text style={styles.textName}>User</Text>
           <FlatList
             // horizontal={true}
             // columnWrapperStyle={styles.column}
@@ -118,7 +167,7 @@ const UserAdminPage = () => {
         </ImageBackground>
         {/* <FastImage style={styles.image} source={getImage('alphabet')} /> */}
       </SafeAreaView>
-    </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -146,6 +195,10 @@ const styles = StyleSheet.create({
     // margin: 16,
     borderRadius: 10,
   },
+  textName: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
   name: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -159,6 +212,7 @@ const styles = StyleSheet.create({
   edit: {
     backgroundColor: '#42b883',
     borderRadius: 8,
+    marginRight: 12,
   },
   textEdit: {
     margin: 4,
@@ -172,7 +226,8 @@ const styles = StyleSheet.create({
   delete: {
     backgroundColor: '#FF0000',
     borderRadius: 8,
-    marginLeft: 12,
+    // marginLeft: 12,
+    marginRight: 12,
   },
   column: {
     justifyContent: 'space-evenly',

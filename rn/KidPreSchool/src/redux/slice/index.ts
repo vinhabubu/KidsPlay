@@ -17,6 +17,7 @@ export const initialState: KidsPreSchoolState = {
   loading: false,
   error: null,
   dataUser: [],
+  isUser: false,
 };
 
 const slice = createSlice({
@@ -56,6 +57,9 @@ const slice = createSlice({
     repoError(state, action: PayloadAction<RepoErrorType>) {
       state.error = action.payload;
       state.loading = false;
+    },
+    setIsUser(state, action: PayloadAction<any>) {
+      state.isUser = action.payload;
     },
   },
 });

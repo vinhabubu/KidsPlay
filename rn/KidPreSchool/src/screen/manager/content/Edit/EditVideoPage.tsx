@@ -32,7 +32,7 @@ import HeaderManager from '../../components/HeaderManager';
 const includeExtra = true;
 const { width } = Dimensions.get('window');
 
-export default function EditContentPage() {
+export default function EditVideoPage() {
   const [response, setResponse] = React.useState<any>(null);
   const option = {
     saveToPhotos: true,

@@ -10,12 +10,13 @@ import RegisterScreen from '~/screen/authenticate/Register';
 import Home from '~/screen/home/Home';
 import ListenAndGuess from '~/screen/listen-and-guess/ListenAndGuess';
 import LookAndChoose from '~/screen/look-and-choose/LookAndChoose';
+import ProfilePage from '~/screen/profile/ProfilePage';
 import Setting from '~/screen/setting/Setting';
 import ShareMenu from '~/screen/share-menu/ShareMenu';
 import Splash from '~/screen/splash/Splash';
 import Detail from '~/screen/start-learning/Detail';
 import StartLearning from '~/screen/start-learning/StartLearning';
-import { Test } from '~/screen/test/test';
+import Test from '~/screen/test/test';
 import Video from '~/screen/video-learning/Video';
 import VideoLearning from '~/screen/video-learning/VideoLearning';
 import VideoMenu from '~/screen/video-learning/VideoMenu';
@@ -46,11 +47,22 @@ export type RootNavigatorProps = {
   ManagePage: undefined;
   TestPage: undefined;
   AdminContainerPage: undefined;
+  ProfilePage: undefined;
 };
 
 export type HomePageNavProps = StackNavigationProp<
   RootNavigatorProps,
   'HomePage'
+>;
+
+export type ProfilePageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'ProfilePage'
+>;
+
+export type AdminContainerPageNavProps = StackNavigationProp<
+  RootNavigatorProps,
+  'AdminContainerPage'
 >;
 
 export type LoginPageNavProps = StackNavigationProp<
@@ -198,7 +210,7 @@ const RootNavigator = (): JSX.Element => {
   return (
     <StackNavigator.Navigator
       screenOptions={screenOptions}
-      initialRouteName='LoginPage'>
+      initialRouteName='SplashPage'>
       <StackNavigator.Screen
         name='HomePage'
         component={Home}
@@ -266,7 +278,12 @@ const RootNavigator = (): JSX.Element => {
         component={Video}
         options={leftToRightAnimation}
       />
-      <StackNavigator.Screen name='TestPage' component={Test} />
+      <StackNavigator.Screen
+        name='ProfilePage'
+        component={ProfilePage}
+        options={leftToRightAnimation}
+      />
+      {/* <StackNavigator.Screen name='TestPage' component={Test} /> */}
     </StackNavigator.Navigator>
   );
 };

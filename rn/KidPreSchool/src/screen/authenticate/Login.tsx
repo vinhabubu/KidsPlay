@@ -1,7 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { createRef, useState } from 'react';
 import {
-  AsyncStorage,
   Image,
   Keyboard,
   KeyboardAvoidingView,
@@ -91,7 +91,8 @@ const Login = () => {
       .then(function (response) {
         // console.log(response.data.isAdmin);
         dispatch(actions.changeDataUser(response.data));
-
+        const userAccount = JSON.stringify(response.data);
+        AsyncStorage.setItem('AccountUser', userAccount);
         if (response.data.isAdmin) {
           navigation.navigate('AdminContainerPage');
         } else if (response.data.isManager) {

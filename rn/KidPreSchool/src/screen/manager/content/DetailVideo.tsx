@@ -18,6 +18,8 @@ import { DataVideo } from '~/data/DataVideo';
 import { DataVideoMenu } from '~/data/DataVideoMenu';
 import { defaultTheme } from '~/theme/theme';
 
+import HeaderManager from '../components/HeaderManager';
+
 const { width } = Dimensions.get('window');
 
 const DetailVideo = () => {
@@ -59,8 +61,8 @@ const DetailVideo = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
+    <View style={styles.container}>
+      <HeaderManager />
       <SafeAreaView style={styles.container}>
         <ImageBackground resizeMode='cover' source={getImage('bgmain')}>
           <FlatList
@@ -75,7 +77,7 @@ const DetailVideo = () => {
         </ImageBackground>
         {/* <FastImage style={styles.image} source={getImage('alphabet')} /> */}
       </SafeAreaView>
-    </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -147,9 +149,10 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
   },
   text: {
-    fontSize: 8,
+    fontSize: 12,
     color: '#000000',
     // backgroundColor: 'red',
+    width: 140,
   },
 });
 export default DetailVideo;

@@ -20,6 +20,8 @@ import { DataVideoMenu } from '~/data/DataVideoMenu';
 import { VideoContentPageNavProps } from '~/navigators/VideoContentContainer';
 import { defaultTheme } from '~/theme/theme';
 
+import HeaderManager from '../components/HeaderManager';
+
 const { width } = Dimensions.get('window');
 const Video = () => {
   const [data, setData] = useState(DataVideoMenu);
@@ -53,8 +55,8 @@ const Video = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
+    <View style={styles.container}>
+      <HeaderManager />
       <SafeAreaView style={styles.container}>
         <ImageBackground resizeMode='cover' source={getImage('bgmain')}>
           <FlatList
@@ -69,7 +71,7 @@ const Video = () => {
         </ImageBackground>
         {/* <FastImage style={styles.image} source={getImage('alphabet')} /> */}
       </SafeAreaView>
-    </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create({

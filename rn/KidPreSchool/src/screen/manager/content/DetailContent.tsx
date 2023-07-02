@@ -21,6 +21,8 @@ import useModalManager from '~/hook/useModalManager';
 import { selectIdMenu } from '~/redux/slice/selectors';
 import { defaultTheme } from '~/theme/theme';
 
+import HeaderManager from '../components/HeaderManager';
+
 const { width } = Dimensions.get('window');
 
 const DetailContent = () => {
@@ -64,8 +66,8 @@ const DetailContent = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
+    <View style={styles.container}>
+      <HeaderManager />
       <SafeAreaView style={styles.container}>
         <ImageBackground resizeMode='cover' source={getImage('bgmain')}>
           <FlatList
@@ -80,7 +82,7 @@ const DetailContent = () => {
         </ImageBackground>
         {/* <FastImage style={styles.image} source={getImage('alphabet')} /> */}
       </SafeAreaView>
-    </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
